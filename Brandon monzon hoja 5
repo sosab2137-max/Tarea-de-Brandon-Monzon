@@ -1,0 +1,31 @@
+import java.util.*;
+
+class Producto {
+
+    int id;
+    String nombre;
+    double precio;
+    int stock;
+
+    Producto(int id, String nombre, double precio, int stock) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.stock = stock;
+    }
+}
+
+public class Ejercicio1 {
+
+    static void aumentarPrecios(
+            ArrayList<Producto> lista,
+            double porcentaje) {
+
+        for (Producto p : lista) {
+
+            if (p.stock < 10) {
+                p.precio += p.precio * porcentaje / 100;
+            }
+        }
+    }
+}
