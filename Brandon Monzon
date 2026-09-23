@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Programación II - ArrayList Java</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f2f4f7;
+            color: #222;
+        }
+
+        header {
+            background: #1f4e79;
+            color: white;
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 38px;
+        }
+
+        header p {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: white;
+            margin-bottom: 25px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            color: #1f4e79;
+            margin-top: 0;
+        }
+
+        pre {
+            background: #1e1e1e;
+            color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        footer {
+            background: #1f4e79;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Programación II</h1>
+        <p>Tarea de ArrayList en Java</p>
+    </header>
+
+    <main>
+
+        <!-- EJERCICIO 1 -->
+        <section>
+            <h2>1. Producto - Aumento de precio</h2>
+
+            <pre>
+import java.util.*;
+
+class Producto {
+
+    int id;
+    String nombre;
+    double precio;
+    int stock;
+
+    Producto(int id, String nombre, double precio, int stock) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.stock = stock;
+    }
+}
+
+public class Ejercicio1 {
+
+    static void aumentarPrecios(
+        ArrayList&lt;Producto&gt; lista,
+        double porcentaje) {
+
+        for (Producto p : lista) {
+
+            if (p.stock &lt; 10) {
+                p.precio += p.precio * porcentaje / 100;
+            }
+        }
+    }
+}
+            </pre>
+        </section>
+
+
+        <!-- EJERCICIO 2 -->
+        <section>
+            <h2>2. Empleados por departamento</h2>
+
+            <pre>
+import java.util.*;
+
+class Empleado {
+
+    String nombre;
+    String departamento;
+    double salario;
+
+    Empleado(String nombre, String departamento, double salario) {
+        this.nombre = nombre;
+        this.departamento = departamento;
+        this.salario = salario;
+    }
+}
+
+public class Ejercicio2 {
+
+    static ArrayList&lt;Empleado&gt; filtrar(
+        ArrayList&lt;Empleado&gt; lista,
+        String departamento) {
+
+        ArrayList&lt;Empleado&gt; resultado =
+            new ArrayList&lt;&gt;();
+
+        for (Empleado e : lista) {
+
+            if (e.departamento.equalsIgnoreCase(departamento)
+                &amp;&amp; e.salario &gt; 5000) {
+
+                resultado.add(e);
+            }
+        }
+
+        return resultado;
+    }
+}
+            </pre>
+        </section>
+
+
+        <!-- EJERCICIO 3 -->
+        <section>
+            <h2>3. Ventas mensuales</h2>
+
+            <pre>
+import java.util.*;
+
+public class Ejercicio3 {
+
+    static double promedio(ArrayList&lt;Double&gt; ventas) {
+
+        double suma = 0;
+
+        for (double venta : ventas) {
+            suma += venta;
+        }
+
+        return suma / ventas.size();
+    }
+
+
+    static double maximo(ArrayList&lt;Double&gt; ventas) {
+
+        double max = ventas.get(0);
+
+        for (double venta : ventas) {
+
+            if (venta &gt; max) {
+                max = venta;
+            }
+        }
+
+        return max;
+    }
+
+
+    static double minimo(ArrayList&lt;Double&gt; ventas) {
+
+        double min = ventas.get(0);
+
+        for (double venta : ventas) {
+
+            if (venta &lt; min) {
+                min = venta;
+            }
+        }
+
+        return min;
+    }
+
+
+    static int diasSobrePromedio(
+        ArrayList&lt;Double&gt; ventas) {
+
+        double promedio = promedio(ventas);
+        int contador = 0;
+
+        for (double venta : ventas) {
+
+            if (venta &gt; promedio) {
+                contador++;
+            }
+        }
+
+        return contador;
+    }
+}
+            </pre>
+        </section>
+
+
+        <!-- EJERCICIO 4 -->
+        <section>
+            <h2>4. Historial de navegación</h2>
+
+            <pre>
+import java.util.*;
+
+class HistorialNavegacion {
+
+    private ArrayList&lt;String&gt; historial =
+        new ArrayList&lt;&gt;();
+
+
+    public void visitarPagina(String url) {
+
+        historial.add(url);
+
+        if (historial.size() &gt; 10) {
+            historial.remove(0);
+        }
+    }
+
+
+    public void mostrar() {
+
+        for (String url : historial) {
+            System.out.println(url);
+        }
+    }
+}
+            </pre>
+        </section>
+
+
+        <!-- EJERCICIO 5 -->
+        <section>
+            <h2>5. Producto - Aumento de precio</h2>
+
+            <p>
+                Este ejercicio corresponde al problema de aumento
+                de precio de productos utilizando ArrayList.
+            </p>
+
+            <pre>
+ArrayList&lt;Producto&gt; productos =
+    new ArrayList&lt;&gt;();
+
+for (Producto producto : productos) {
+
+    if (producto.stock &lt; 10) {
+
+        producto.precio =
+            producto.precio * 1.10;
+    }
+}
+            </pre>
+        </section>
+
+
+        <!-- EJERCICIO 6 -->
+        <section>
+            <h2>6. Ventas mensuales</h2>
+
+            <p>
+                Se utilizan los datos almacenados en un
+                ArrayList para obtener estadísticas de ventas.
+            </p>
+
+            <pre>
+ArrayList&lt;Double&gt; ventas =
+    new ArrayList&lt;&gt;();
+
+double suma = 0;
+
+for (double venta : ventas) {
+    suma += venta;
+}
+
+double promedio = suma / ventas.size();
+
+System.out.println("Promedio: " + promedio);
+            </pre>
+        </section>
+
+
+        <!-- EJERCICIO 7 -->
+        <section>
+            <h2>7. Carrito de compras</h2>
+
+            <pre>
+import java.util.*;
+
+class ItemCarrito {
+
+    String producto;
+    int cantidad;
+    double precioUnitario;
+
+    ItemCarrito(
+        String producto,
+        int cantidad,
+        double precioUnitario) {
+
+        this.producto = producto;
+        this.cantidad = cantidad;
+        this.precioUnitario = precioUnitario;
+    }
+}
+
+
+class CarritoCompras {
+
+    private ArrayList&lt;ItemCarrito&gt; items =
+        new ArrayList&lt;&gt;();
+
+
+    public void agregarItem(
+        String producto,
+        int cantidad,
+        double precio) {
+
+        for (ItemCarrito item : items) {
+
+            if (item.producto.equalsIgnoreCase(producto)) {
+
+                item.cantidad += cantidad;
+                return;
+            }
+        }
+
+        items.add(
+            new ItemCarrito(
+                producto,
+                cantidad,
+                precio
+            )
+        );
+    }
+
+
+    public void eliminarItem(String producto) {
+
+        items.removeIf(
+            item -&gt;
+            item.producto.equalsIgnoreCase(producto)
+        );
+    }
+
+
+    public void vaciarCarrito() {
+
+        items.clear();
+    }
+
+
+    public double calcularTotal() {
+
+        double total = 0;
+
+        for (ItemCarrito item : items) {
+
+            total +=
+                item.cantidad *
+                item.precioUnitario;
+        }
+
+        return total;
+    }
+}
+            </pre>
+        </section>
+
+
+        <!-- EJERCICIO 8 -->
+        <section>
+            <h2>8. Total facturado por cliente</h2>
+
+            <pre>
+import java.util.*;
+
+class Factura {
+
+    int idFactura;
+    String cliente;
+    double monto;
+
+    Factura(
+        int idFactura,
+        String cliente,
+        double monto) {
+
+        this.idFactura = idFactura;
+        this.cliente = cliente;
+        this.monto = monto;
+    }
+}
+
+
+public class Ejercicio8 {
+
+    static HashMap&lt;String, Double&gt; resumen(
+        ArrayList&lt;Factura&gt; lista) {
+
+        HashMap&lt;String, Double&gt; resultado =
+            new HashMap&lt;&gt;();
+
+
+        for (Factura factura : lista) {
+
+            resultado.put(
+                factura.cliente,
+
+                resultado.getOrDefault(
+                    factura.cliente,
+                    0.0
+                ) + factura.monto
+            );
+        }
+
+        return resultado;
+    }
+}
+            </pre>
+        </section>
+
+
+        <!-- EJERCICIO 9 -->
+        <section>
+            <h2>9. Fusionar dos ArrayList ordenados</h2>
+
+            <pre>
+import java.util.*;
+
+public class Ejercicio9 {
+
+    static ArrayList&lt;Integer&gt; fusionar(
+        ArrayList&lt;Integer&gt; a,
+        ArrayList&lt;Integer&gt; b) {
+
+        ArrayList&lt;Integer&gt; resultado =
+            new ArrayList&lt;&gt;();
+
+        int i = 0;
+        int j = 0;
+
+
+        while (
+            i &lt; a.size() &amp;&amp;
+            j &lt; b.size()
+        ) {
+
+            if (a.get(i) &lt;= b.get(j)) {
+
+                resultado.add(a.get(i));
+                i++;
+
+            } else {
+
+                resultado.add(b.get(j));
+                j++;
+            }
+        }
+
+
+        while (i &lt; a.size()) {
+
+            resultado.add(a.get(i));
+            i++;
+        }
+
+
+        while (j &lt; b.size()) {
+
+            resultado.add(b.get(j));
+            j++;
+        }
+
+
+        return resultado;
+    }
+}
+            </pre>
+
+            <p>
+                Complejidad del algoritmo: O(n + m).
+            </p>
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>Programación II - ArrayList en Java</p>
+        <p>Repositorio: Brandon-Monzon-</p>
+    </footer>
+
+</body>
+</html>
